@@ -11,7 +11,12 @@ class ExpenseCategoryController extends Controller
     public function index()
     {
         return Response::json([
-            'expenses' => ExpenseCategory::get(),
+            'expenses' => ExpenseCategory::get()->transform(fn ($expense) => [
+                'id' => $expense->id,
+                'name' => $expense->name,
+                'icon' => $expense->icon,
+                'color' => json_decode($expense->color)
+            ]),
         ]);
     }
 
