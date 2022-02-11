@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ExpenseCategory;
+use App\Http\Controllers\AccountCategoryController;
 use App\Http\Controllers\ExpenseCategoryController;
+use App\Http\Controllers\IncomeCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,13 @@ Route::prefix('category')->group(function(){
         Route::get('/{income_category}', 'show');
         Route::post('/', 'store');
         Route::put('/{income_category}', 'update');
+    });
+
+    Route::prefix('account')->controller(AccountCategoryController::class)->group(function(){
+        Route::get('/', 'index');
+        Route::get('/{account_category}', 'show');
+        Route::post('/', 'store');
+        Route::put('/{account_category}', 'update');
     });
 
 });

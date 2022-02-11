@@ -24,7 +24,7 @@ class IncomeCategoryController extends Controller
 
     public function store(IncomeCategoryRequest $request)
     {
-        IncomeCategory::create($request->only('name'));
+        IncomeCategory::create($request->only('name', 'color', 'icon'));
 
         return Response::json([
             'success' => 'Success',
@@ -33,7 +33,7 @@ class IncomeCategoryController extends Controller
 
     public function update(IncomeCategoryRequest $request, IncomeCategory $income_category)
     {
-        $income_category->update($request->only('name'));
+        $income_category->update($request->only('name', 'color', 'icon'));
         
         return Response::json([
             'success' => 'Success',

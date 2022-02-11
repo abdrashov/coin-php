@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('income_categories', function (Blueprint $table) {
+        Schema::create('account_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name', 36);
             $table->string('icon', 64);
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('income_categories');
+        Schema::dropIfExists('account_categories');
     }
 };

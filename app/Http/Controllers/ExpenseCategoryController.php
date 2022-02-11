@@ -24,7 +24,7 @@ class ExpenseCategoryController extends Controller
 
     public function store(ExpenseCategoryRequest $request)
     {
-        ExpenseCategory::create($request->only('name'));
+        ExpenseCategory::create($request->only('name', 'color', 'icon'));
 
         return Response::json([
             'success' => 'Success',
@@ -33,7 +33,7 @@ class ExpenseCategoryController extends Controller
 
     public function update(ExpenseCategoryRequest $request, ExpenseCategory $expense_category)
     {
-        $expense_category->update($request->only('name'));
+        $expense_category->update($request->only('name', 'color', 'icon'));
         
         return Response::json([
             'success' => 'Success',

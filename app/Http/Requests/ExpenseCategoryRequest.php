@@ -11,7 +11,9 @@ class ExpenseCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'max:36']
+            'name' => ['required', 'max:36'],
+            'icon' => ['required', 'max:64'],
+            'color' => ['required', 'json'],
         ];
     }
 
@@ -22,5 +24,12 @@ class ExpenseCategoryRequest extends FormRequest
             'message'   => 'Поля заполнены неправильно',
             'data'      => $validator->errors()
         ]));
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'color' => json_encode($this->get('color')),
+        ]);
     }
 }

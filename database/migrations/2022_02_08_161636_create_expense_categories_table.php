@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('expense_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name', 36);
+            $table->string('icon', 64);
+            $table->json('color');
             $table->timestamps();
         });
     }

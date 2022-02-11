@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 
-class IncomeCategoryRequest extends FormRequest
+class AccountCategoryRequest extends FormRequest
 {
     public function rules()
     {
