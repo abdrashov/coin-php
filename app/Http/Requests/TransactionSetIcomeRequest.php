@@ -8,14 +8,14 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Support\Facades\Response;
 
-class ExpenseCategoryRequest extends FormRequest
+class TransactionSetIcomeRequest extends FormRequest
 {
+    private const FLOAT_TO_INT = 100;
+
     public function rules()
     {
         return [
-            'name' => ['required', 'max:36'],
-            'icon' => ['required', 'max:64'],
-            'color' => ['required'],
+            'cash' => ['required', 'numeric', 'min:0'],
         ];
     }
 
@@ -26,5 +26,12 @@ class ExpenseCategoryRequest extends FormRequest
             'message'   => 'Поля заполнены неправильно',
             'data'      => $validator->errors()
         ], (new ValidationException($validator))->status));
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'cash' => (int) (self::FLOAT_TO_INT * (float) $this->input('cash')),
+        ]);
     }
 }

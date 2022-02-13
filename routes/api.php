@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AccountCategoryController;
 use App\Http\Controllers\ExpenseCategoryController;
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\IncomeCategoryController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -44,4 +46,13 @@ Route::prefix('category')->group(function(){
         Route::put('/{account_category}', 'update');
     });
 
+});
+
+Route::prefix('transaction')->controller(TransactionController::class)->group(function(){
+    Route::post('/income/{account_category}/{income_category}', 'setIncome');
+    Route::post('/expense/{income_category}/{expense_category}', 'setExpense');
+});
+
+Route::prefix('account')->controller(AccountController::class)->group(function(){
+    Route::get('/', 'index');
 });

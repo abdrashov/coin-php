@@ -4,7 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Support\Facades\Response;
 
 class AccountCategoryRequest extends FormRequest
 {
@@ -13,23 +15,16 @@ class AccountCategoryRequest extends FormRequest
         return [
             'name' => ['required', 'max:36'],
             'icon' => ['required', 'max:64'],
-            'color' => ['required', 'json'],
+            'color' => ['required'],
         ];
     }
 
     public function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException(response()->json([
+        throw new HttpResponseException(Response::json([
             'success'   => false,
             'message'   => 'Поля заполнены неправильно',
             'data'      => $validator->errors()
-        ]));
-    }
-
-    protected function prepareForValidation()
-    {
-        $this->merge([
-            'color' => json_encode($this->get('color')),
-        ]);
+        ], (new ValidationException($validator))->status));
     }
 }

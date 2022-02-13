@@ -12,4 +12,9 @@ class AccountCategory extends Model
     protected $fillable = [
         'name', 'icon', 'color'
     ];
+
+    public function incomeTransaction()
+    {
+        return $this->hasMany(IncomeTransaction::class, 'account_category_id');
+    }
 }

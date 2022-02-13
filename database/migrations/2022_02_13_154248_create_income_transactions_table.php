@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('expense_categories', function (Blueprint $table) {
+        Schema::create('income_transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 36);
-            $table->string('icon', 64);
-            $table->string('color');
-            $table->timestamps();
+            $table->foreignId('account_category_id')->constrained('account_categories');
+            $table->foreignId('income_category_id')->constrained('income_categories');
+            $table->bigInteger('cash');
+            $table->timestamps(); 
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expense_categories');
+        Schema::dropIfExists('income_transactions');
     }
 };

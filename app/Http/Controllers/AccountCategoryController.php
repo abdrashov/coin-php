@@ -28,8 +28,8 @@ class AccountCategoryController extends Controller
         AccountCategory::create($request->only('name', 'color', 'icon'));
 
         return Response::json([
-            'success' => 'Success',
-        ]);
+            'success'   => true,
+        ], 201);
     }
 
     public function update(AccountCategoryRequest $request, AccountCategory $account_category)
@@ -37,7 +37,7 @@ class AccountCategoryController extends Controller
         $account_category->update($request->only('name', 'color', 'icon'));
         
         return Response::json([
-            'success' => 'Success',
-        ]);
+            'success'   => true,
+        ], 202);
     }
 }

@@ -15,7 +15,7 @@ class ExpenseCategoryController extends Controller
                 'id' => $expense->id,
                 'name' => $expense->name,
                 'icon' => $expense->icon,
-                'color' => json_decode($expense->color)
+                'color' => $expense->color
             ]),
         ]);
     }
@@ -32,8 +32,8 @@ class ExpenseCategoryController extends Controller
         ExpenseCategory::create($request->only('name', 'color', 'icon'));
 
         return Response::json([
-            'success' => 'Success',
-        ]);
+            'success'   => true,
+        ], 201);
     }
 
     public function update(ExpenseCategoryRequest $request, ExpenseCategory $expense_category)
@@ -41,7 +41,7 @@ class ExpenseCategoryController extends Controller
         $expense_category->update($request->only('name', 'color', 'icon'));
         
         return Response::json([
-            'success' => 'Success',
-        ]);
+            'success'   => true,
+        ], 202);
     }
 }

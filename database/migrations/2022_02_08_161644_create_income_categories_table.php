@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 36);
             $table->string('icon', 64);
-            $table->json('color');
+            $table->string('color');
             $table->timestamps();
         });
     }

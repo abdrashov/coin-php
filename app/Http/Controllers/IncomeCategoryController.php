@@ -27,8 +27,8 @@ class IncomeCategoryController extends Controller
         IncomeCategory::create($request->only('name', 'color', 'icon'));
 
         return Response::json([
-            'success' => 'Success',
-        ]);
+            'success'   => true,
+        ], 201);
     }
 
     public function update(IncomeCategoryRequest $request, IncomeCategory $income_category)
@@ -36,7 +36,7 @@ class IncomeCategoryController extends Controller
         $income_category->update($request->only('name', 'color', 'icon'));
         
         return Response::json([
-            'success' => 'Success',
-        ]);
+            'success'   => true,
+        ], 202);
     }
 }
