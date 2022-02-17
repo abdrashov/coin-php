@@ -12,4 +12,14 @@ class ExpenseTransactions extends Model
     protected $fillable = [
         'income_category_id', 'expense_category_id', 'cash'
     ];
+
+    public function expense()
+    {
+        return $this->belongsTo(ExpenseCategory::class, 'expense_category_id');
+    }
+
+    public function income()
+    {
+        return $this->belongsTo(IncomeCategory::class, 'income_category_id');
+    }
 }
