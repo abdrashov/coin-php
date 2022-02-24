@@ -5,6 +5,7 @@ use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\IncomeCategoryController;
+use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -59,5 +60,9 @@ Route::prefix('account')->controller(AccountController::class)->group(function()
 });
 
 Route::prefix('expense')->controller(ExpenseController::class)->group(function(){
+    Route::get('/', 'index');
+});
+
+Route::prefix('income')->controller(IncomeController::class)->group(function(){
     Route::get('/', 'index');
 });

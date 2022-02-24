@@ -12,4 +12,14 @@ class IncomeTransaction extends Model
     protected $fillable = [
         'account_category_id', 'income_category_id', 'cash'
     ];
+
+    public function account()
+    {
+        return $this->belongsTo(AccountCategory::class, 'account_category_id');
+    }
+
+    public function income()
+    {
+        return $this->belongsTo(IncomeCategory::class, 'income_category_id');
+    }
 }
